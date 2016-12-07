@@ -201,12 +201,7 @@ public class RNAppsFlyerModule extends ReactContextBaseJavaModule  {
         }
 
         Map<String, Object> data = RNUtil.toMap(eventData);
-
-        if(data.size() == 0){
-            errorCallback.invoke( new Exception(NO_EVENT_VALUES_FOUND).getMessage() );
-            return;
-        }
-
+            
         AppsFlyerLib.getInstance().trackEvent(getReactApplicationContext(), eventName, data);
 
             //TODO: callback should come from SDK
