@@ -201,7 +201,16 @@ public class RNAppsFlyerModule extends ReactContextBaseJavaModule  {
         }
 
         Map<String, Object> data = RNUtil.toMap(eventData);
-            
+
+        if(data == null){ // in case of no values
+            data = new HashMap<>();
+        }
+
+//        if(data.size() == 0){
+//            errorCallback.invoke( new Exception(NO_EVENT_VALUES_FOUND).getMessage() );
+//            return;
+//        }
+
         AppsFlyerLib.getInstance().trackEvent(getReactApplicationContext(), eventName, data);
 
             //TODO: callback should come from SDK
@@ -232,5 +241,11 @@ public class RNAppsFlyerModule extends ReactContextBaseJavaModule  {
     {
         AppsFlyerLib.getInstance().setGCMProjectNumber(getReactApplicationContext(), gcmProjectId);
         successCallback.invoke(SUCCESS);
+    }
+
+    @ReactMethod
+    public void setCustomerUserId(final String userId,Callback callback){
+        AppsFlyerLib.getInstance().setCustomerUserId(userId);
+        callback.invoke(SUCCESS);
     }
 }
