@@ -45,6 +45,9 @@ appsFlyer.setCustomerUserId = (userId, successC,) => {
     return RNAppsFlyer.setCustomerUserId(userId, successC);
 };
 
+appsFlyer.trackAppLaunch = () => {
+    RNAppsFlyer.trackAppLaunch();
+}
 
 
 /**

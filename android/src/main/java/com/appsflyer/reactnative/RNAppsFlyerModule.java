@@ -105,8 +105,6 @@ public class RNAppsFlyerModule extends ReactContextBaseJavaModule  {
 
             instance.startTracking(application, devKey);
 
-            trackAppLaunch();
-
             //TODO: callback should come from SDK
             successCallback.invoke(SUCCESS);
         }
@@ -181,7 +179,8 @@ public class RNAppsFlyerModule extends ReactContextBaseJavaModule  {
 
     }
 
-    private void trackAppLaunch(){
+    @ReactMethod
+    public void trackAppLaunch(){
         Context c = application.getApplicationContext();
         AppsFlyerLib.getInstance().trackEvent(c, null, null);
     }
